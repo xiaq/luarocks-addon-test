@@ -28,7 +28,7 @@ local function run_tests(modules)
                 print("FAIL: "..err)
             end
         else
-            print("NO TEST FILE "..test..", skipped")
+            print("NO TEST FILE "..filename..", skipped")
         end
     end
 end
