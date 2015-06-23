@@ -1,16 +1,20 @@
 local test = {}
 
--- XXX Uses unstable API of luarocks.fs and luarocks.fetch
-local fs = require("luarocks.fs")
-local fetch = require("luarocks.fetch")
+local lfs = require("lfs")
 local api = require("luarocks.api")
 
 local modules_from_rockspec
 
+local function exists(filename)
+    local attr = lfs.attributes(filename)
+    print(filename, attr)
+    return attr and true or false
+end
+
 local function find_test(filename)
     local ext = filename:match("%.[^/\\]*$")
     local test_filename = filename:sub(1, -1-#ext).."_test"..ext
-    return fs.exists(test_filename) and test_filename or nil
+    return exists(test_filename) and test_filename or nil
 end
 
 local function run_tests(modules)
@@ -40,7 +44,7 @@ function test.load()
 end
 
 function test.run(filename)
-    local rockspec, err, errcode = fetch.load_rockspec(filename)
+    local rockspec, err, errcode = api.load_rockspec(filename)
     if err then
         return nil, err, errcode
     end
