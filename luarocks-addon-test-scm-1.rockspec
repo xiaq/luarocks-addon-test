@@ -9,7 +9,7 @@ description = {
 }
 dependencies = {
     'lua >= 5.1',
-    'LuaFileSystem'
+    'luafilesystem'
 }
 build = {
     type = 'builtin',
