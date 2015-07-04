@@ -1,6 +1,5 @@
 local test = {}
 
-local lfs = require("lfs")
 local api = require("luarocks.api")
 
 local function find_test(filename)
